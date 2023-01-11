@@ -1,27 +1,22 @@
-# grpc-gateway-template
-
-## proto
-
-```shell
-task proto
-```
-
-## httpsdk
-
-```shell
-task httpsdk
-```
+# agent
+agent for host
 
 ## build binary
 
 ```shell
-task build -- app1
-task build -- app2
+cd cmd
+go build -o jaronnie-private-agent-app
 ```
 
 ## run binary
 
 ```shell
-task run -- app1
-task run -- app2
+./jaronnie-private-agent-app start --nodaemon
+```
+
+## test
+
+```shell
+cd _example
+go run main.go
 ```

@@ -13,18 +13,9 @@ builds:
       - linux
       - windows
       - darwin
-    id: grpc-gateway-template-app1
-    binary: grpc-gateway-template-app1
-    main: ./apps/app1
-  - env:
-      - CGO_ENABLED=0
-    goos:
-      - linux
-      - windows
-      - darwin
-    id: grpc-gateway-template-app2
-    binary: grpc-gateway-template-app2
-    main: ./apps/app2
+    id: grpc-gateway-template
+    binary: grpc-gateway-template
+    main: ./cmd
 archives:
   - replacements:
       darwin: Darwin

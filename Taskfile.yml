@@ -19,7 +19,7 @@ tasks:
     deps:
       - build
     cmds:
-      - cd apps/{{.CLI_ARGS}} && ../../dist/grpc-gateway-template-{{.CLI_ARGS}}_{{OS}}_{{ARCH}}/grpc-gateway-template-{{.CLI_ARGS}}
+      - cd cmd && ../dist/grpc-gateway-template_{{OS}}_{{ARCH}}/grpc-gateway-template start --nodaemon
   release:
     cmds:
       - goreleaser release --rm-dist

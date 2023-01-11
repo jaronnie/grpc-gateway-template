@@ -1,5 +1,0 @@
-[grpc]
-port = 9604
-
-[http]
-port = 8091

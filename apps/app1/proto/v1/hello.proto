@@ -1,7 +1,0 @@
-syntax = "proto3";
-package app1;
-option go_package = "./mypb/app1";
-
-message Hello {
-  string message = 1;
-}

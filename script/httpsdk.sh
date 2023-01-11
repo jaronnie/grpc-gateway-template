@@ -2,22 +2,18 @@
 
 set -e
 
-WorkPath=$(pwd)
-
-# export tools bin to PATH
-PATH="${WorkPath}"/tools:"${PATH}"
-
-App=$1
+Mode=$1
 
 function generateFunc() {
-    mkdir -p httpsdk/"$1"/pb
+    mkdir -p pkg/myservicesdk/pb
     # shellcheck disable=SC2043
-    for dir in apps/"$1"/proto/v1; do
-      scopeVersion="$1"v1
+    for dir in proto/v1; do
+      scopeVersion=myservicev1
       if [ -d "$dir" ]; then
-          protoc --proto_path="$dir" --go_out="$(pwd)"/httpsdk/"$1"/pb --go-httpsdk_out=logtostderr=true,v=1,scopeVersion="$scopeVersion",sdkDir=httpsdk/"$1":"$(pwd)"/httpsdk/"$1" "$dir"/*.proto
+        protoc --proto_path="$dir" --go_out="$(pwd)"/pkg/myservicesdk/pb --go-httpsdk_out=logtostderr=true,v=1,scopeVersion="$scopeVersion",sdkDir=pkg/myservicesdk:"$(pwd)"/pkg/myservicesdk "$dir"/*.proto
       fi
     done
+    sleep 1
 }
 
-generateFunc "$App"
+generateFunc "$Mode"
