@@ -1,0 +1,7 @@
+syntax = "proto3";
+package app2;
+option go_package = "./mypb/app2";
+
+message Hello {
+  string message = 1;
+}

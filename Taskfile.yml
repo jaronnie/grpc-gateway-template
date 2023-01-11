@@ -3,10 +3,10 @@ version: "3"
 tasks:
   proto:
     cmds:
-      - sh script/proto.sh
+      - sh script/proto.sh {{.CLI_ARGS}}
   httpsdk:
     cmds:
-      - sh script/httpsdk.sh
+      - sh script/httpsdk.sh {{.CLI_ARGS}}
   fmt:
     cmds:
       - sh script/goimports.sh {{ if empty .CLI_ARGS }}all{{ else }}git{{ end }}

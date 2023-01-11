@@ -2,6 +2,7 @@ package internal
 
 import (
 	"context"
+	"github.com/jaronnie/grpc-gateway-template/base/mypb/app1"
 	"net"
 	"net/http"
 
@@ -10,7 +11,6 @@ import (
 	"google.golang.org/grpc/reflection"
 
 	"github.com/jaronnie/grpc-gateway-template/apps/app1/internal/api"
-	"github.com/jaronnie/grpc-gateway-template/base/mypb"
 	"github.com/jaronnie/grpc-gateway-template/base/pkg/logx"
 )
 
@@ -26,7 +26,7 @@ func (app *App) grpcServer() (s *grpc.Server, err error) {
 	reflection.Register(s)
 
 	agentV1 := &api.AppV1{}
-	mypb.RegisterApp1Server(s, agentV1)
+	app1.RegisterApp1Server(s, agentV1)
 
 	app.GrpcServer = s
 
@@ -37,7 +37,7 @@ func (app *App) gatewayServer() (s *http.Server, err error) {
 	logx.Infof("start gateway server 0.0.0.0:%s\n", app.HttpPort)
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
-	if err := mypb.RegisterApp1HandlerFromEndpoint(context.Background(), mux, "0.0.0.0:"+app.GrpcPort, opts); err != nil {
+	if err := app1.RegisterApp1HandlerFromEndpoint(context.Background(), mux, "0.0.0.0:"+app.GrpcPort, opts); err != nil {
 		return nil, err
 	}
 

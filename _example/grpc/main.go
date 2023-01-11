@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/jaronnie/grpc-gateway-template/base/mypb"
+	"github.com/jaronnie/grpc-gateway-template/base/mypb/app1"
 	"google.golang.org/grpc"
 	"log"
 )
@@ -18,9 +18,9 @@ func main() {
 
 	defer conn.Close()
 
-	client := mypb.NewApp1Client(conn)
+	client := app1.NewApp1Client(conn)
 
-	app, err := client.SayHello(context.Background(), &mypb.Hello{
+	app, err := client.SayHello(context.Background(), &app1.Hello{
 		Message: "Hello jaronnie!",
 	})
 	if err != nil {
