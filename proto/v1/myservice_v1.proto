@@ -1,0 +1,26 @@
+syntax = "proto3";
+package mypb;
+option go_package = "./mypb";
+
+import "google/api/annotations.proto";
+import "hello.proto";
+
+service app1 {
+  // Sends a greeting
+  rpc SayHello (Hello) returns (Hello) {
+    option (google.api.http) = {
+      post: "/api/v1/hello"
+      body: "*"
+    };
+  }
+}
+
+service app2 {
+  // Sends a greeting
+  rpc SayHello (Hello) returns (Hello) {
+    option (google.api.http) = {
+      post: "/api/v1/hello"
+      body: "*"
+    };
+  }
+}

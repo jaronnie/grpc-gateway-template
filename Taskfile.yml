@@ -1,0 +1,26 @@
+version: "3"
+
+tasks:
+  proto:
+    cmds:
+      - sh script/proto.sh
+  httpsdk:
+    cmds:
+      - sh script/httpsdk.sh
+  fmt:
+    cmds:
+      - sh script/goimports.sh {{ if empty .CLI_ARGS }}all{{ else }}git{{ end }}
+    silent: true
+  build:
+    cmds:
+      - goreleaser build --snapshot --single-target --rm-dist
+    silent: true
+  run:
+    deps:
+      - build
+    cmds:
+      - cd apps/{{.CLI_ARGS}} && ../../dist/grpc-gateway-template-{{.CLI_ARGS}}_{{OS}}_{{ARCH}}/grpc-gateway-template-{{.CLI_ARGS}}
+  release:
+    cmds:
+      - goreleaser release --rm-dist
+    silent: true
