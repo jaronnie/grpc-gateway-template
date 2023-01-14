@@ -1,22 +1,24 @@
-# agent
-agent for host
+# grpc-gateway-example
+grpc-gateway-example
 
 ## build binary
 
 ```shell
-cd cmd
-go build -o jaronnie-private-agent-app
+task build
 ```
 
 ## run binary
 
 ```shell
-./jaronnie-private-agent-app start --nodaemon
+task run
 ```
 
 ## test
 
 ```shell
 cd _example
-go run main.go
+# http
+cd http; go run main.go
+# grpc
+cd grpc; go run main.go
 ```
