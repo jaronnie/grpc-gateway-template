@@ -23,6 +23,7 @@ function protomakefunc() {
             protos="$protos ./$file"
             protosdir="$protosdir -I./$dir"
             protoc -I./"${dir}" -I./proto/ --go_out="$(pwd)"/base --go-grpc_out=require_unimplemented_servers=false:"$(pwd)"/base "$file"
+            python -m grpc_tools.protoc -I ./"${dir}" -I ./proto/ --python_out="$(pwd)"/_example/grpc-python --grpc_python_out="$(pwd)"/_example/grpc-python "$file"
           fi
         done
         protoc -I./"${dir}" -I./proto/"$v" --grpc-gateway_out=logtostderr=true:"$(pwd)"/base "${dir}"/"$project""_$v".proto
