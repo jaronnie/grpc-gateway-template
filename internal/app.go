@@ -54,7 +54,7 @@ func (app *App) Run() (err error) {
 	}()
 
 	go func() {
-		_, err := app.gatewayServer()
+		_, err := app.httpServer()
 		if err != nil {
 			panic(err)
 		}
